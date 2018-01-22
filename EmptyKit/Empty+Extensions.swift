@@ -209,7 +209,7 @@ public extension Empty where Base: UIScrollView {
      - author: archerzz
      - date: 2016-11-22
      */
-    fileprivate func invalidate() {
+    func invalidate() {
         guard let emptyView = objc_getAssociatedObject(base, &emptyViewKey) as? EmptyView else {
             return
         }
@@ -230,7 +230,7 @@ public extension Empty where Base: UIScrollView {
      
      - returns: whether emptyView will be added
      */
-    fileprivate func setupEmptyView(withItemsCount itemsCount: Int) -> Bool {
+    func setupEmptyView(withItemsCount itemsCount: Int) -> Bool {
         guard let dataSource = dataSource, itemsCount == 0 else {
             invalidate()
             return false
