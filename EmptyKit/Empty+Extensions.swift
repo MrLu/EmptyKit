@@ -261,8 +261,8 @@ public extension Empty where Base: UIScrollView {
             base.addConstraint(NSLayoutConstraint(item: view, attribute: .bottom, relatedBy: .equal, toItem: base, attribute: .bottom, multiplier: 1, constant: 0))
             let inset = base.contentInset
             base.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: base, attribute: .width, multiplier: 1, constant: -inset.left - inset.right))
-            base.addConstraint(NSLayoutConstraint(item: view, attribute: .height , relatedBy: .equal, toItem: base, attribute: .height, multiplier: 1, constant: -inset.top - inset.bottom))
-            
+            let autoInset = delegate?.emptyShouldAutoAddInsetWhenSuperviewIsScrollView(in: base) ?? true
+            base.addConstraint(NSLayoutConstraint(item: view, attribute: .height , relatedBy: .equal, toItem: base, attribute: .height, multiplier: 1, constant: (autoInset ? (-inset.top - inset.bottom) : 0) ))
         }
         view.prepareForReuse()
        
