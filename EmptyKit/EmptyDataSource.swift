@@ -164,6 +164,9 @@ public protocol EmptyDataSource: class {
      - returns: A minimum width of the button.
      */
     func buttonMinimumWidthForEmpty(in view: UIView) -> CGFloat?
+    
+    func buttonEffectForEmpty(in view: UIView, of button:UIButton)
+    
     /**
      Ask the datasource for a background color of the empty view. Default is clear.
      
@@ -250,6 +253,10 @@ public extension EmptyDataSource {
     
     func buttonMinimumWidthForEmpty(in view: UIView) -> CGFloat? {
         return 120
+    }
+    
+    func buttonEffectForEmpty(in view: UIView, of button:UIButton) {
+        
     }
     
     func customViewForEmpty(in view: UIView) -> UIView? {
