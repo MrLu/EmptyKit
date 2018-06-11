@@ -45,9 +45,13 @@ fileprivate extension UIScrollView {
      - author: archerzz
      - date: 2016-11-22
      */
-    @objc fileprivate func ept_reloadData() {
-        guard ept.setupEmptyView(withItemsCount: ept.itemsCount) else {
-            return
+    @objc fileprivate func ept_reloadData(isForce:Bool = false) {
+        if !isForce {
+            guard ept.setupEmptyView(withItemsCount: ept.itemsCount) else {
+                return
+            }
+        } else {
+            let _ = ept.setupEmptyView(withItemsCount: 0)
         }
         // events
         ept.emptyView?.didTappedButton = { [weak self] button in
@@ -182,6 +186,11 @@ public extension Empty where Base: UIScrollView {
     func reloadData() {
         base.ept_reloadData()
     }
+    
+    func forceDisplay() {
+        base.ept_reloadData(isForce: true)
+    }
+    
     /**
      calculate the sum of count with a transform in [0..<section]
      
